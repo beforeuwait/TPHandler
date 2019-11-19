@@ -404,3 +404,133 @@ LOGIN_HEADERS = {
     }
 }
 
+
+# #############################################################################
+# ###################### 针对登录过程中用到的参数 ################################
+# ############################################################################
+
+# GET 请求
+
+LOGIN_PARAMS = {
+    '10086': {
+        'send_flag': {
+            'timestamp': '',  # 时间戳
+        },
+        'login': {
+            'accountType': '01',
+            'account': '',  # 手机号
+            'password': '',  # 加密后的密码
+            'pwdType': '01',
+            'smsPwd': '',  # 短信验证码
+            'inputCode': '',
+            'backUrl': 'http://www.10086.cn/index/sc/index_280_280.html',   # 这里仅仅是针对四川
+            'rememberMe': '0',
+            'channelID': '12034',
+            'loginMode': '01',
+            'protocol': 'https:',
+            'timestamp': '',  # 时间戳
+        },
+        'artifact': {
+            'backUrl': 'http://www.10086.cn/index/sc/index_280_280.html',
+            'artifact': '',  # artifact
+            'type': '00'
+        }
+    },
+    '10010': {
+        'check_verify': {
+            'callback': '',
+            'userName': '',  # 手机号
+            'pwdType': '02',
+            '_': '',  # 时间戳
+        },
+        'send_mail': {
+            'callback': '',
+            'req_time': '',  # 时间戳
+            'mobile': '',   # 手机号
+            '_': '',    # 时间戳
+        },
+        'login': {
+            'callback': '',
+            'req_time': '',  # 时间戳
+            'redirectURL': 'http://www.10010.com/net5/',
+            'userName': '',  # 手机号
+            'password': '',  # 短信验证码
+            'pwdType': '02',
+            'productType': '01',
+            'redirectType': '01',
+            'rememberMe': '1',
+            '_': '',    # 时间戳
+        },
+        'check_release': {
+            'callback': '',
+            '_': '',    # 时间戳
+        }
+    },
+    '189': {
+        'captcha_params': {
+            'undefined': '',
+            'source': 'login',
+            'width': '100',
+            'height': '37'
+        },
+        'login_mail': {
+            'm': 'sendphonepwd',
+            'account': '',  # 手机号
+            'uType': '201',
+            'pid': '',  # 省份
+            'captcha': '',  # 验证码
+        }
+    }
+}
+
+# POST请求
+
+LOGIN_PAYLOADS = {
+    '10086': {
+        'check_number': {
+            'userName': '',  # 手机号
+            'loginMode': '01',
+            'channelID': '10000'
+        },
+        'load_token': {
+            'userName': '',  # 手机号
+        },
+        'send_code': {
+            'userName': '',  # 手机号
+            'type': '01',
+            'channelID': '12034'
+        }
+    },
+    '10010': {},        # 联通是个奇葩登录过程都是GET请求
+    '189': {
+        'check_payloads_1': {
+            'm': 'checkphone',
+            'phone': '',        # 手机号
+        },
+        'check_payloads_2': {
+            'm': 'captcha',
+            'account': '',      # 手机号
+            'uType': '201',
+            'ProvinceID': '',   # 省份id
+            'areaCode': '',
+            'cityNo': ''
+        },
+        'vaildate_payloads': {
+            'uName': '',    # 手机号
+            'uType': '201',
+            'uPwd': '',     # 计算出的手机号
+            'isRandomPwd': 'true',
+        },
+        'login_payloads': {
+            'Account': '',  # 手机号
+            'UType': '201',
+            'ProvinceID': '',   # 省份
+            'AreaCode': '',
+            'CityNo': '',
+            'Captcha': '',  # 验证码
+            'RandomFlag': '1',
+            'Password': '',     # 密码
+        }
+    }
+}
+
