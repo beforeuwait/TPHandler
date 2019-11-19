@@ -1,16 +1,9 @@
 # coding=utf-8
 
-# ###########################
-# ###### 10086代表 中国移动 ##
-# ###### 10010代表 中国联通 ##
-# ###### 189代表 中国电信 ####
-# ##########################
-
-
 # url
 
 LOGIN_URL = {
-    '10086': {
+    'cmcc': {
         'init_page': 'https://login.10086.cn/login.html',
         'load_sendflag': 'https://login.10086.cn/loadSendflag.htm?timestamp=',
         'captchazh': 'https://login.10086.cn/captchazh.htm?type=12',
@@ -22,7 +15,7 @@ LOGIN_URL = {
         'send_flag': 'https://login.10086.cn/sendflag.htm',
         'login': 'https://login.10086.cn/login.htm'
     },
-    '10010': {
+    'cu': {
         'home_page': 'http://www.10010.com/net5/{0}/',
         'hall_url': 'http://uac.10010.com/portal/hallLogin',
         'login_page': 'https://uac.10010.com/portal/homeLoginNew',
@@ -32,7 +25,7 @@ LOGIN_URL = {
         'er_wei': 'https://uac.10010.com/oauth2/genqr?timestamp={0}',
         'check_release': 'https://uac.10010.com/portal/Service/checkRelease',
     },
-    '189': {
+    'ct': {
         'first_request': 'http://www.189.cn/dqmh/system.do?operate=index',
         'home_page': 'http://www.189.cn',
         'login_index': 'http://www.189.cn/login/index.do',
@@ -49,7 +42,7 @@ LOGIN_URL = {
 # headers
 
 LOGIN_HEADERS = {
-    '10086': {
+    'cmcc': {
         'init_page': {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -193,7 +186,7 @@ LOGIN_HEADERS = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'
         },
     },
-    '10010': {
+    'cu': {
         'login_page': {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -266,7 +259,7 @@ LOGIN_HEADERS = {
             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
         },
     },
-    '189': {
+    'ct': {
         'origin': {
             'Host': 'www.189.cn',
             'Content-Length': '0',
@@ -412,7 +405,7 @@ LOGIN_HEADERS = {
 # GET 请求
 
 LOGIN_PARAMS = {
-    '10086': {
+    'cmcc': {
         'send_flag': {
             'timestamp': '',  # 时间戳
         },
@@ -436,7 +429,7 @@ LOGIN_PARAMS = {
             'type': '00'
         }
     },
-    '10010': {
+    'cu': {
         'check_verify': {
             'callback': '',
             'userName': '',  # 手机号
@@ -466,7 +459,7 @@ LOGIN_PARAMS = {
             '_': '',    # 时间戳
         }
     },
-    '189': {
+    'ct': {
         'captcha_params': {
             'undefined': '',
             'source': 'login',
@@ -486,7 +479,7 @@ LOGIN_PARAMS = {
 # POST请求
 
 LOGIN_PAYLOADS = {
-    '10086': {
+    'cmcc': {
         'check_number': {
             'userName': '',  # 手机号
             'loginMode': '01',
@@ -501,8 +494,8 @@ LOGIN_PAYLOADS = {
             'channelID': '12034'
         }
     },
-    '10010': {},        # 联通是个奇葩登录过程都是GET请求
-    '189': {
+    'cu': {},        # 联通是个奇葩登录过程都是GET请求
+    'ct': {
         'check_payloads_1': {
             'm': 'checkphone',
             'phone': '',        # 手机号
