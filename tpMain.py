@@ -40,21 +40,21 @@ def push_2_redis(id_key, map_data):
 
 if __name__ == '__main__':
     data = {
-        'phone': '18200120030',
+        'phone': '182001200xx',
         'pwd': '112233',
-        'card': '511324199012120034',
+        'card': '511324xxxxxxxx00xx',
         'sp': '移动'
     }
     data2 = {
-        'phone': '18111622847',
+        'phone': '181xxxxx847',
         'pwd': '',
-        'card': '511324199012120034',
+        'card': '511324xxxxxxxx00xx',
         'sp': '电信'
     }
     data3 = {
-        'phone': '18582481785',
+        'phone': '185xxxxx785',
         'pwd': '',
-        'card': '511324199012120034',
+        'card': '511324xxxxxxxx00xx',
         'sp': '联通'
     }
     run(data2)
