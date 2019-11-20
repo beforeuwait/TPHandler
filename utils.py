@@ -5,6 +5,18 @@ import json
 import hashlib
 from redis import StrictRedis
 
+# 屏蔽warning
+requests.packages.urllib3.disable_warnings()
+
+
+# json 处理
+def json_loads(js_ctx):
+    js_dict = None
+    try:
+        js_dict = json.loads(js_ctx)
+    except:
+        print('json加载出错',js_ctx)
+    return js_dict
 
 # cookie编辑
 def cookie_transform(c_l):
@@ -23,7 +35,7 @@ def get_request(**kwargs):
                                 params=kwargs.get('params'),
                                 verify=False,
                                 allow_redirects=False)
-            if resp.status_code < 300:
+            if resp.status_code <= 302:
                 break
         except Exception as e:
             pass
@@ -42,7 +54,7 @@ def post_request(**kwargs):
                                  data=kwargs.get('data'),
                                  verify=False,
                                  allow_redirects=False)
-            if resp.status_code < 300:
+            if resp.status_code <= 302:
                 break
         except Exception as e:
             pass
