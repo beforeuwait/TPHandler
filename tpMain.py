@@ -31,30 +31,34 @@ def transform_sp(sp):
 
 def push_2_redis(id_key, map_data):
     map_data.update({'cookies': '',
-                      'captcha1': '',
-                      'captcha2': '',
-                      'sp': transform_sp(map_data.get('sp'))})
+                     'captcha1': '',
+                     'captcha2': '',
+                     'sp': transform_sp(map_data.get('sp')),
+                     'html': '',
+                     'ex1': '',
+                     'ex2': '',
+                     'ex3': ''})
     hmset_data(id_key, map_data)
     return
 
 
 if __name__ == '__main__':
     data = {
-        'phone': '182001200xx',
+        'phone': '182xxxxxxxxxx',
         'pwd': '112233',
-        'card': '511324xxxxxxxx00xx',
+        'card': '511xxxxxxxxxxxx034',
         'sp': '移动'
     }
     data2 = {
-        'phone': '181xxxxx847',
+        'phone': '181xxxxxxxxxx',
         'pwd': '',
-        'card': '511324xxxxxxxx00xx',
+        'card': '511xxxxxxxxxxxx034',
         'sp': '电信'
     }
     data3 = {
-        'phone': '185xxxxx785',
+        'phone': '185xxxxxxxxx85',
         'pwd': '',
-        'card': '511324xxxxxxxx00xx',
+        'card': '511xxxxxxxxxxxx034',
         'sp': '联通'
     }
     run(data2)
