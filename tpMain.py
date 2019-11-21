@@ -10,14 +10,16 @@
 import time
 from utils import calculate_md5
 from utils import hmset_data
-from loginModel import receive_key_do_switcher
+from loginModel import receive_key_do_switcher as login_switch
+from detailModel import receive_key_do_switcher as detail_switch
 
 
 def run(init_data):
     # 初始化原始数据
     id_key = calculate_md5('_'.join([init_data.get('phone'), str(int(1000*time.time()))]))
     push_2_redis(id_key, init_data)
-    receive_key_do_switcher(id_key)
+    login_switch(id_key)
+    detail_switch(id_key)
 
 
 def transform_sp(sp):
@@ -45,22 +47,24 @@ def push_2_redis(id_key, map_data):
 
 if __name__ == '__main__':
     data = {
-        'phone': '18200120030',
-        'pwd': '112233',
-        'card': '511324199012120034',
+        'phone': '18xxxxxxx30',
+        'name': '',
+        'pwd': 'xxxxxx',
+        'card': '51xxxxxxxxxxxxxxx34',
         'sp': '移动'
     }
     data2 = {
-        # 'phone': '18111622847',
-        'phone': '19915681084',
+        'phone': '1811xxxx847',
+        'name': '王xx',
         'pwd': '',
-        'card': '511324199012120034',
+        'card': '51xxxxxxxxxxxxxxx34',
         'sp': '电信'
     }
     data3 = {
-        'phone': '18582481785',
+        'phone': '185xxxx1785',
         'pwd': '',
-        'card': '511324199012120034',
+        'name': '',
+        'card': '51xxxxxxxxxxxxxxx34',
         'sp': '联通'
     }
     run(data2)
