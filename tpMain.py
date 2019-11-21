@@ -37,28 +37,30 @@ def push_2_redis(id_key, map_data):
                      'html': '',
                      'ex1': '',
                      'ex2': '',
-                     'ex3': ''})
+                     'ex3': '',
+                     'data': ''})
     hmset_data(id_key, map_data)
     return
 
 
 if __name__ == '__main__':
     data = {
-        'phone': '182xxxxxxxxxx',
+        'phone': '18200120030',
         'pwd': '112233',
-        'card': '511xxxxxxxxxxxx034',
+        'card': '511324199012120034',
         'sp': '移动'
     }
     data2 = {
-        'phone': '181xxxxxxxxxx',
+        # 'phone': '18111622847',
+        'phone': '19915681084',
         'pwd': '',
-        'card': '511xxxxxxxxxxxx034',
+        'card': '511324199012120034',
         'sp': '电信'
     }
     data3 = {
-        'phone': '185xxxxxxxxx85',
+        'phone': '18582481785',
         'pwd': '',
-        'card': '511xxxxxxxxxxxx034',
+        'card': '511324199012120034',
         'sp': '联通'
     }
     run(data2)
