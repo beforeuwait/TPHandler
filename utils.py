@@ -86,6 +86,10 @@ CARD = 'card'
 COOKIE = 'cookies'
 CAPTCHA1 = 'captcha1'
 CAPTCHA2 = 'captcha2'
+HTML = 'html'
+EX1 = 'ex1'
+EX2 = 'ex2'
+EX3 = 'ex3'
 
 
 def connect_redis():
@@ -95,8 +99,8 @@ def connect_redis():
 def hmset_data(id_key, data_dict):
     """
     向redis放入
-    key        field value field value field value field value  field   value field  value field value
-    id_number   phone xxxx  cookie xxxx  card xxxx   pwd  xxxxx  captcha1 xx  captcha2  xx  sp   cmcc
+    key        field value field value field value .....
+    id_number   phone xxxx  cookie xxxx  card xxxx   ......
     每个 key的有效期为 600秒
     """
     rds = connect_redis()
