@@ -86,7 +86,17 @@ def request_login_url(url):
     resp = get_request(url=url, headers=headers)
     if resp:
         new_cookie = session_cookie_update(cookies_list, resp.cookies.items())
-        save_new_cookie(ID_KEY, new_cookie)
+        url_location_1 = resp.headers.get('Location')
+        cookies_loc_1 = cookie_transform(new_cookie)
+        resp_loc_1 = get_request(url=url_location_1, headers=headers, cookies=cookies_loc_1)
+        if resp_loc_1:
+            new_cookie = session_cookie_update(cookies_list, resp_loc_1.cookies.items())
+            cookies_loc_2 = cookie_transform(new_cookie)
+            url_location_2 = resp_loc_1.headers.get('Location')
+            resp_loc_2 = get_request(url=url_location_2, headers=headers, cookies=cookies_loc_2)
+            if resp_loc_2:
+                new_cookie = session_cookie_update(cookies_list, resp_loc_2.cookies.items())
+                save_new_cookie(ID_KEY, new_cookie)
 
 
 def add_cookie():
