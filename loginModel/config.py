@@ -466,13 +466,6 @@ LOGIN_PARAMS = {
             'width': '100',
             'height': '37'
         },
-        'login_mail': {
-            'm': 'sendphonepwd',
-            'account': '',  # 手机号
-            'uType': '201',
-            'pid': '',  # 省份
-            'captcha': '',  # 验证码
-        }
     }
 }
 
@@ -523,6 +516,13 @@ LOGIN_PAYLOADS = {
             'Captcha': '',  # 验证码
             'RandomFlag': '1',
             'Password': '',     # 密码
+        },
+        'login_mail': {
+            'm': 'sendphonepwd',
+            'account': '',  # 手机号
+            'uType': '201',
+            'pid': '',  # 省份
+            'captcha': '',  # 验证码
         }
     }
 }
