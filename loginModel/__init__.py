@@ -27,6 +27,7 @@ from utils import cookie_dealer
 from utils import hget_name
 from utils import session_cookie_update
 from utils import json_loads
+from utils import encrpt_pwd
 from .config import LOGIN_URL
 from .config import LOGIN_HEADERS
 from .config import LOGIN_PARAMS
@@ -50,6 +51,7 @@ from .jsHacker import N3FA_LPVT
 from .jsHacker import COLLECT_ID
 from .jsHacker import WTFPC
 from .ct_login_handler import ct_run
+from .cmcc_login_handler import cmcc_run
 
 
 def receive_key_do_switcher(id_key):
@@ -65,7 +67,7 @@ def receive_key_do_switcher(id_key):
 
 def sp_switcher(sp):
     sp_dict = {
-        'cmcc': '',
+        'cmcc': cmcc_run,
         'ct': ct_run,
         'cu': ''
     }
