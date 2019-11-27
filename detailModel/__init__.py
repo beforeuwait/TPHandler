@@ -6,12 +6,13 @@
     这里仅仅是一个demo
     感兴趣的，获取别的数据都行
     哪怕通过爬虫修改自己的套餐都行
-
+    会出现没有数据的情况，那是服务器自己抽风
 """
 
 from .config import DETAIL_URL
 from .config import DETAIL_HEADERS
 from .config import DETAIL_PAYLOADS
+from .config import DETAIL_PARAMS
 from utils import hget_name
 from utils import hset_name
 from utils import cookie_dealer
@@ -20,7 +21,10 @@ from utils import get_request
 from utils import post_request
 from utils import session_cookie_update
 from utils import save_new_cookie
+from .js_hacker import COLLECT_ID
+from .js_hacker import WTFPC
 from .ct_detail_handler import ct_detail_run
+from .cmcc_detail_handler import cmcc_detail_run
 
 
 def receive_key_do_switcher(id_key):
@@ -36,7 +40,7 @@ def receive_key_do_switcher(id_key):
 
 def sp_switcher(sp):
     sp_dict = {
-        'cmcc': '',
+        'cmcc': cmcc_detail_run,
         'ct': ct_detail_run,
         'cu': ''
     }
