@@ -16,6 +16,7 @@
 身份证为 手机号+时间戳 进行md5转换
 """
 
+
 import requests
 from utils import cookie_transform
 from utils import connect_redis
@@ -28,30 +29,30 @@ from utils import hget_name
 from utils import session_cookie_update
 from utils import json_loads
 from utils import encrpt_pwd
+from .config import PROV_LIST
 from .config import LOGIN_URL
 from .config import LOGIN_HEADERS
 from .config import LOGIN_PARAMS
 from .config import LOGIN_PAYLOADS
-from .jsHacker import TRKID_JS
-from .jsHacker import CODE_V
-from .jsHacker import LVID_JS
-from .jsHacker import S_FID_JS
-from .jsHacker import NVID
-from .jsHacker import TRKHMCLICKCOORDS
-from .jsHacker import SVID_URL
-from .jsHacker import SVID_HEADERS
-from .jsHacker import SVID_PARAMS
-from .jsHacker import ECS_REQINFO_LOGIN1
-from .jsHacker import ASE
-from .jsHacker import DCSFPC
-from .jsHacker import N3FA_CID
-from .jsHacker import N3FA_EXT
-from .jsHacker import N3FA_LVT
-from .jsHacker import N3FA_LPVT
-from .jsHacker import COLLECT_ID
-from .jsHacker import WTFPC
+from .js_hacker import TRKID_JS
+from .js_hacker import CODE_V
+from .js_hacker import LVID_JS
+from .js_hacker import S_FID_JS
+from .js_hacker import NVID
+from .js_hacker import TRKHMCLICKCOORDS
+from .js_hacker import SVID_URL
+from .js_hacker import SVID_HEADERS
+from .js_hacker import SVID_PARAMS
+from .js_hacker import ECS_REQINFO_LOGIN1
+from .js_hacker import ASE
+from .js_hacker import DCSFPC
+from .js_hacker import N3FA_CID
+from .js_hacker import N3FA_EXT
+from .js_hacker import N3FA_LVT
+from .js_hacker import N3FA_LPVT
 from .ct_login_handler import ct_run
 from .cmcc_login_handler import cmcc_run
+from .cu_login_handler import cu_run
 
 
 def receive_key_do_switcher(id_key):
@@ -69,6 +70,6 @@ def sp_switcher(sp):
     sp_dict = {
         'cmcc': cmcc_run,
         'ct': ct_run,
-        'cu': ''
+        'cu': cu_run,
     }
     return sp_dict.get(sp)
