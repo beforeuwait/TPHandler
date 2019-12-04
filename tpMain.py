@@ -15,7 +15,6 @@ from detailModel import receive_key_do_switcher as detail_switch
 
 
 def run(init_data):
-    # 初始化原始数据
     id_key = calculate_md5('_'.join([init_data.get('phone'), str(int(1000*time.time()))]))
     push_2_redis(id_key, init_data)
     login_switch(id_key)
@@ -65,7 +64,8 @@ if __name__ == '__main__':
         'pwd': '',
         'name': '',
         'card': '511xxxxxxxxxxxx4',
-        'sp': '联通'
+        'sp': '联通',
+        'prov': '四川'
     }
-    run(data)
+    run(data3)
 
