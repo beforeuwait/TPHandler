@@ -321,11 +321,19 @@ LOGIN_PAYLOADS = {
 
 # ..................................................................
 
-URL_DETAIL = {
+DETAIL_URL = {
     'common': 'https://iservice.10010.com/e3/static/common/l?_={0}',
+    'pageList': 'https://iservice.10010.com/e3/static/query/message/pageList',
+    'verificationSms': 'https://iservice.10010.com/e3/static/query/verificationSms?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001',
+    'limitQueryCollector': 'https://iservice.10010.com/e3/static/query/limitQueryCollector',
+    'pageList2': 'https://www.10010.com/mall/service/query/message/pageList?_={0}',
+    'checkmapExtraParam': 'https://iservice.10010.com/e3/static/query/checkmapExtraParam?_={0}',
+    'sendRandomCode': 'https://iservice.10010.com/e3/static/query/sendRandomCode?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001',
+    'verificationSubmit': 'https://iservice.10010.com/e3/static/query/verificationSubmit?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001',
+    'callDetail': 'https://iservice.10010.com/e3/static/query/callDetail?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001'
 }
 
-HEADERS_DETAIL = {
+DETAIL_HEADERS = {
     'common': {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -341,12 +349,156 @@ HEADERS_DETAIL = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest'
     },
-
+    'pageList': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Host': 'iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+    'verificationSms': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '19',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Host': 'iservice.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+    'limitQueryCollector': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '0',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Host': 'iservice.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest',
+    },
+    'pageList2': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '47',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Host': 'www.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-site',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
+    },
+    'checkmapExtraParam': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '19',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Host': 'iservice.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+    'sendRandomCode': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '19',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Host': 'iservice.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+    'verificationSubmit': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '36',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Host': 'iservice.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+    'callDetail': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Length': '56',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Host': 'iservice.10010.com',
+        'Origin': 'https://iservice.10010.com',
+        'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest',
+    }
 }
 
-PARAMS_DETAIL = {
-
+DETAIL_PARAMS = {
+    'pageList': {
+        '_': '',
+        'currentPage': '1',
+        'pageSize': '2'
+    },
 }
 
 
-PAYLOADS_DETAIL = {}
+DETAIL_PAYLOADS = {
+    'verificationSms': {
+        'menuId': '000100030001'
+    },
+    'pageList2': {
+        'usernumber': '',
+        'currentPage': '1',
+        'pageSize': '7'
+    },
+    'checkmapExtraParam': {
+        'menuId': '000100030001'
+    },
+    'sendRandomCode': {
+        'menuId': '000100030001'
+    },
+    'verificationSubmit': {
+        'inputcode': '',
+        'menuId': '000100030001'
+    },
+    'callDetail': {
+        'pageNo': '1',
+        'pageSize': '20',
+        'beginDate': '20191001',
+        'endDate': '20191030'
+    }
+}

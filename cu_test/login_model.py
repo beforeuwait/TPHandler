@@ -15,10 +15,6 @@ from config import LOGIN_URL
 from config import LOGIN_HEADERS
 from config import LOGIN_PARAMS
 from config import LOGIN_PAYLOADS
-from config import URL_DETAIL
-from config import HEADERS_DETAIL
-from config import PARAMS_DETAIL
-from config import PAYLOADS_DETAIL
 
 
 ss = requests.Session()
@@ -69,7 +65,7 @@ def check_login():
 def get_js():
     url = URL_DICT.get('getJs').format(int(1000*time.time()), int(1000*time.time()))
     headers = HEADERS_DICT.get('getJs')
-    ss.get(url=url, headers=headers, verify=False)
+    ss.post(url=url, headers=headers, verify=False)
 
 
 def check_login_2():
@@ -141,9 +137,7 @@ def mall_login(phone, pwd, code):
     print(resp.content.decode('utf-8'))
 
 
-def main_logic():
-    phone = '185xxxxx785'
-    pwd = '45xxxx'
+def login_main_logic(phone, pwd):
     general_request('call_dan_iframe')
     general_request('e4avatar_upload')
     general_request_params('getHeadImg')
@@ -163,22 +157,4 @@ def main_logic():
     send_ck_msg(phone)
     code = input('请输入验证码........:')
     mall_login(phone, pwd, code)
-
-
-def common():
-    url = URL_DETAIL.get('common')
-    headers = HEADERS_DETAIL.get('common')
-    ss.post(url=url, headers=headers)
-
-
-def after_login():
-    common()
-    general_request('call_dan_iframe')
-    general_request_params('getHeadImg')
-    search_per_info()
-    search_per_info_user()
-    check_login()
-
-if __name__ == '__main__':
-    main_logic()
-    after_login()
+    return ss.cookies
