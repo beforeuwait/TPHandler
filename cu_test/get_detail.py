@@ -96,8 +96,8 @@ def call_detail():
 
 
 def detail_main_logic():
-    phone = '18582481785'
-    pwd = '454647'
+    phone = '185xxxxxx85'
+    pwd = 'xxxxxx'
     cookie_object = login_main_logic(phone, pwd)
     ss.cookies.update(cookie_object)
     common()
