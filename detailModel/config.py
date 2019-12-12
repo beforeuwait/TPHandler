@@ -3,7 +3,7 @@
 # url
 
 DETAIL_URL = {
-        'cmcc': {
+    'cmcc': {
         'loginfo': 'https://shop.10086.cn/i/v1/auth/loginfo',
         'home': 'https://shop.10086.cn/i/?f=home',
         'sso': 'https://login.10086.cn/SSOCheck.action?channelID=12003&backUrl=https://shop.10086.cn/i/?f=home',
@@ -14,7 +14,28 @@ DETAIL_URL = {
         'final': 'https://shop.10086.cn/i/v1/fee/detailbilltempidentjsonp/{0}',
         'detail': 'https://shop.10086.cn/i/v1/fee/detailbillinfojsonp/{0}',
     },
-    'cu': {},
+    'cu': {
+        'call_dan_iframe': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+        'get_head_img': 'https://uac.10010.com/portal/Service/getHeadImg',
+        'search_per_info': 'https://iservice.10010.com/e3/static/query/searchPerInfo/',
+        'search_per_info_user': 'https://iservice.10010.com/e3/static/query/searchPerInfoUser/',
+        'common': 'https://iservice.10010.com/e3/static/common/l?_={0}',
+        'page_list': 'https://iservice.10010.com/e3/static/query/message/pageList',
+        'checklogin': 'https://iservice.10010.com/e3/static/check/checklogin/?_={0}',
+        'info': 'https://iservice.10010.com/e3/static/common/info?_={0}',
+        'call_dan': 'https://iservice.10010.com/e4/query/bill/call_dan.html?menuId=000100030001',
+        'get_js': 'https://iservice.10010.com/e3/static/transact/getJs?_={0}?_={1}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+        'verification_sms': 'https://iservice.10010.com/e3/static/query/verificationSms?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001',
+        'limit_query_collector': 'https://iservice.10010.com/e3/static/query/limitQueryCollector',
+        'shopping': 'https://iservice.10010.com/e3/static/shopping/g',
+        'query_navigations': 'https://www.10010.com/mall/service/query/QueryNavigations',
+        'get_area_by_ip': 'https://www.10010.com/mall/service/ipAddress/getAreaByIp/?_={0}',
+        'page_list2': 'https://www.10010.com/mall/service/query/message/pageList?_={0}',
+        'checkmap_extra_param': 'https://iservice.10010.com/e3/static/query/checkmapExtraParam?_={0}',
+        'send_random_code': 'https://iservice.10010.com/e3/static/query/sendRandomCode?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001',
+        'verification_submit': 'https://iservice.10010.com/e3/static/query/verificationSubmit?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001',
+        'call_detail': 'https://iservice.10010.com/e3/static/query/callDetail?_={0}&accessURL=https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_={1}&menuid=000100030001'
+    },
     'ct': {
         'send_mail_url': 'https://sc.189.cn/cloudapi/UnionSendsmsTemplateDeatil/UnionSendsmsTemplateDeatil',
         'check_url': 'https://sc.189.cn/cloudapi/QryDeatil/checkCode',
@@ -173,7 +194,286 @@ DETAIL_HEADERS = {
             'X-Requested-With': 'XMLHttpRequest'
         }
     },
-    'cu': {},
+    'cu': {
+        'call_dan_iframe': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Host': 'iservice.10010.com',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+        },
+        'call_dan': {
+            'Accept': 'text/html, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Host': 'iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'shopping': {
+            'Accept': 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Host': 'iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'get_js': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'info': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'get_head_img': {
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Host': 'uac.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'no-cors',
+            'Sec-Fetch-Site': 'same-site',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
+        },
+        'common': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'search_per_info': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'search_per_info_user': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'page_list': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Host': 'iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'checklogin': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'verification_sms': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '19',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'limit_query_collector': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+        'page_list2': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '47',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'www.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-site',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
+        },
+        'get_area_by_ip': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '0',
+            'Host': 'www.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-site',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
+        },
+        'checkmap_extra_param': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '19',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'send_random_code': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '19',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'verification_submit': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '36',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        'call_detail': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '56',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'iservice.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html?_=1576049172738',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+        'query_navigations': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Content-Length': '30',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Host': 'www.10010.com',
+            'Origin': 'https://iservice.10010.com',
+            'Referer': 'https://iservice.10010.com/e4/query/bill/call_dan-iframe.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-site',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
+        },
+    },
     'ct': {
         'sso_headers': {
             'Host': 'www.189.cn',
@@ -286,7 +586,48 @@ DETAIL_HEADERS = {
 
 DETAIL_PAYLOADS = {
     'cmcc': {},
-    'cu': {},
+    'cu': {
+        'page_ist': {
+            '_': '',
+            'currentPage': '1',
+            'pageSize': '2'
+        },
+        'page_list2': {
+            'usernumber': '',
+            'currentPage': '1',
+            'pageSize': '7'
+        },
+        'search_per_info': {
+            '_': ''
+        },
+        'search_per_info_user': {
+            '_': ''
+        },
+        'query_navigations': {
+            'jutThird': '',
+            '_uop_id': '',
+            'procode': '011'
+        },
+        'verification_sms': {
+            'menuId': '000100030001'
+        },
+        'call_detail': {
+            'pageNo': '1',
+            'pageSize': '20',
+            'beginDate': '20191001',
+            'endDate': '20191030'
+        },
+        'checkmap_extra_param': {
+            'menuId': '000100030001'
+        },
+        'send_random_code': {
+            'menuId': '000100030001'
+        },
+        'verification_submit': {
+            'inputcode': '',
+            'menuId': '000100030001'
+        },
+    },
     'ct': {
         'check_session': '{"fastcode": "20000326"}',
         'payloads_mail': {"body": {}},
@@ -327,6 +668,44 @@ DETAIL_PARAMS = {
             '_': '',    # 时间戳
         }
     },
-    'cu': {},
+    'cu': {
+        'get_head_img': {
+            'callback': 'jQuery1123011424774332753085_{}',
+            '_': ''
+        },
+        'verification_sms': {
+            'menuId': '000100030001'
+        },
+        'page_list': {
+            '_': '',
+            'currentPage': '1',
+            'pageSize': '2'
+        },
+        'page_list2': {
+            'usernumber': '',
+            'currentPage': '1',
+            'pageSize': '7'
+        },
+        'checkmap_extra_param': {
+            'menuId': '000100030001'
+        },
+        'send_random_code': {
+            'menuId': '000100030001'
+        },
+        'verification_submit': {
+            'inputcode': '',
+            'menuId': '000100030001'
+        },
+        'call_detail': {
+            'pageNo': '1',
+            'pageSize': '20',
+            'beginDate': '20191001',
+            'endDate': '20191030'
+        },
+        'shopping': {
+            'callback': 'jQuery1123011424774332753085_{0}',
+            '_': ''
+        },
+    },
     'ct': {}
 }
