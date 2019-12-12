@@ -61,11 +61,11 @@ if __name__ == '__main__':
     }
     data3 = {
         'phone': '185xxxxxx85',
-        'pwd': '',
+        'pwd': 'xxxxxx',
         'name': '',
         'card': '511xxxxxxxxxxxx4',
         'sp': '联通',
-        'prov': '四川'
+        'prov': ''
     }
     run(data3)
 
