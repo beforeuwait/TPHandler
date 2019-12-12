@@ -21,10 +21,14 @@ from utils import get_request
 from utils import post_request
 from utils import session_cookie_update
 from utils import save_new_cookie
+from utils import get_request_cu
+from utils import post_request_cu
+from utils import json_loads
 from .js_hacker import COLLECT_ID
 from .js_hacker import WTFPC
 from .ct_detail_handler import ct_detail_run
 from .cmcc_detail_handler import cmcc_detail_run
+from .cu_detail_handler import cu_detail_run
 
 
 def receive_key_do_switcher(id_key):
@@ -42,6 +46,6 @@ def sp_switcher(sp):
     sp_dict = {
         'cmcc': cmcc_detail_run,
         'ct': ct_detail_run,
-        'cu': ''
+        'cu': cu_detail_run,
     }
     return sp_dict.get(sp)
