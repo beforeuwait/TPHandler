@@ -18,8 +18,8 @@ def json_loads(js_ctx):
     js_dict = None
     try:
         js_dict = json.loads(js_ctx)
-    except:
-        print('json加载出错',js_ctx)
+    except Exception as e:
+        print('json加载出错', js_ctx)
     return js_dict
 
 
@@ -40,6 +40,42 @@ def get_request(**kwargs):
                                 params=kwargs.get('params'),
                                 verify=False,
                                 allow_redirects=False)
+            if resp.status_code <= 302:
+                break
+        except Exception as e:
+            pass
+        retry -= 1
+    return resp
+
+
+def get_request_cu(**kwargs):
+    retry = 5
+    resp = None
+    while retry > 0:
+        try:
+            resp = requests.get(url=kwargs.get('url'),
+                                headers=kwargs.get('headers'),
+                                params=kwargs.get('params'),
+                                verify=False,
+                                allow_redirects=False)
+            if resp.status_code <= 302:
+                break
+        except Exception as e:
+            pass
+        retry -= 1
+    return resp
+
+
+def post_request_cu(**kwargs):
+    retry = 5
+    resp = None
+    while retry > 0:
+        try:
+            resp = requests.post(url=kwargs.get('url'),
+                                 headers=kwargs.get('headers'),
+                                 data=kwargs.get('data'),
+                                 verify=False,
+                                 allow_redirects=False)
             if resp.status_code <= 302:
                 break
         except Exception as e:
@@ -106,11 +142,11 @@ def hmset_data(id_key, data_dict):
     向redis放入
     key        field value field value field value .....
     id_number   phone xxxx  cookie xxxx  card xxxx   ......
-    每个 key的有效期为 600秒
+    每个 key的有效期为 1200秒 20分钟
     """
     rds = connect_redis()
     rds.hmset(name=id_key, mapping=data_dict)
-    rds.expire(name=id_key, time=600)
+    rds.expire(name=id_key, time=1200)
 
 
 def hset_name(id_key, field, value):
@@ -163,3 +199,4 @@ def encrpt_pwd(pwd):
     rsakey = RSA.importKey(key)
     cipher = Cipher_pkcs2_v1_5.new(rsakey)
     return base64.b64encode(cipher.encrypt(pwd.encode())).decode('utf-8')
+

@@ -9,6 +9,7 @@ LOGIN_URL = {
         'captchazh': 'https://login.10086.cn/captchazh.htm?type=12',
         'genqr': 'https://login.10086.cn/genqr.htm',
         'check_uid': 'https://login.10086.cn/checkUidAvailable.action',
+        'need_verify_code': 'https://login.10086.cn/needVerifyCode.htm',
         'check_number': 'https://login.10086.cn/chkNumberAction.action',
         'load_token': 'https://login.10086.cn/loadToken.action',
         'send_code': 'https://login.10086.cn/sendRandomCodeAction.action',
@@ -112,6 +113,18 @@ LOGIN_HEADERS = {
             'Sec-Fetch-Site': 'same-origin',
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
             'X-Requested-With': 'XMLHttpRequest',
+        },
+        'need_verify_code': {
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
+            'Host': 'login.10086.cn',
+            'Referer': 'https://login.10086.cn/login.html?channelID=12034&backUrl=http%3A%2F%2Fwww.10086.cn%2Findex%2Fsc%2Findex_280_280.html',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
         },
         'check_number': {
             'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -580,6 +593,11 @@ LOGIN_PARAMS = {
     'cmcc': {
         'send_flag': {
             'timestamp': '',  # 时间戳
+        },
+        'need_verify_code': {
+            'accountType': '01',
+            'account': '',
+            'timestamp': '',
         },
         'login': {
             'accountType': '01',

@@ -39,6 +39,8 @@ def push_2_redis(id_key, map_data):
                      'captcha2': '',
                      'sp': transform_sp(map_data.get('sp')),
                      'html': '',
+                     'info': '',
+                     'login': 'false',
                      'ex1': '',
                      'ex2': '',
                      'ex3': '',

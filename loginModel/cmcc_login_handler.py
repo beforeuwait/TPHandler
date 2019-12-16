@@ -8,6 +8,8 @@
 12-16: 开始迭代
     针对登录过程中手机号是否验证
     验证失败的情况 返回相应的结果
+    ** 目前看来移动是登录过程默认短信验证 **
+    苦于没有其他手机号支撑
 """
 
 
@@ -38,57 +40,107 @@ PAYLOADS_DICT = LOGIN_PAYLOADS.get(XCODE)
 PARAMS_DICT = LOGIN_PARAMS.get(XCODE)
 
 
-def ready_2_login():
-    general_request(param='init_page')
-    general_request(param='load_sendflag')
-    general_request(param='captchazh')
-    general_request(param='genqr')
-    general_request(param='check_uid')
+def get_args_maker(params) -> tuple:
+    return URL_DICT.get(params), HEADERS_DICT.get(params), PARAMS_DICT.get(params)
 
 
-def receive_mail_code():
+def post_args_maker(params) -> tuple:
+    return URL_DICT.get(params), HEADERS_DICT.get(params), PAYLOADS_DICT.get(params)
+
+
+def general_request(name) -> None:
+    cookies_list, cookies = cookie_dealer(ID_KEY)
+    url = URL_DICT.get(name)
+    headers = HEADERS_DICT.get(name)
+    resp = get_request(url=url, headers=headers, cookies=cookies)
+    if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
+
+
+def ready_2_login() -> None:
+    general_request(name='init_page')
+    general_request(name='load_sendflag')
+    general_request(name='captchazh')
+    general_request(name='genqr')
+    general_request(name='check_uid')
+    return 
+
+
+def check_number() -> None:
     phone = hget_name(id_key=ID_KEY, name='phone')
     cookies_list, cookies = cookie_dealer(ID_KEY)
-    url_check = URL_DICT.get('check_number')
-    headers_check = HEADERS_DICT.get('check_number')
-    data_check = PAYLOADS_DICT.get('check_number')
-    data_check.update({'userName': phone})
-    resp_check = post_request(url=url_check, headers=headers_check, cookies=cookies, data=data_check)
-    if resp_check:
-        new_cookie = session_cookie_update(cookies_list, resp_check.cookies.items())
-        cookies = cookie_transform(new_cookie)
-        url_token = URL_DICT.get('load_token')
-        headers_token = HEADERS_DICT.get('load_token')
-        data_token = PAYLOADS_DICT.get('load_token')
-        data_token.update({'userName': phone})
-        resp_token = post_request(url=url_token, headers=headers_token, cookies=cookies, data=data_token)
-        if resp_token:
-            token = json.loads(resp_token.content.decode('utf-8')).get('result')
-            new_cookie = session_cookie_update(new_cookie, resp_token.cookies.items())
-            cookies = cookie_transform(new_cookie)
-            url_code = URL_DICT.get('send_code')
-            headers_code = HEADERS_DICT.get('send_code')
-            headers_code.update({'Xa-before': token})
-            data_code = PAYLOADS_DICT.get('send_code')
-            data_code.update({'userName': phone})
-            resp_code = post_request(url=url_code, headers=headers_code, data=data_code, cookies=cookies)
-            if resp_code:
-                new_cookie = session_cookie_update(new_cookie, resp_code.cookies.items())
-                cookies = cookie_transform(new_cookie)
-                url_flag = URL_DICT.get('send_flag')
-                headers_flag = HEADERS_DICT.get('send_flag')
-                params_flag = PARAMS_DICT.get('send_flag')
-                params_flag.update({'timestamp': int(1000 * time.time())})
-                resp_flag = get_request(url=url_flag, headers=headers_flag, params=params_flag, cookies=cookies)
-                if resp_flag:
-                    new_cookie = session_cookie_update(cookies_list, resp_code.cookies.items())
-                    save_new_cookie(ID_KEY, new_cookie)
+    url, headers, data = post_args_maker('check_number')
+    data.update({'userName': phone})
+    resp = post_request(url=url, headers=headers, cookies=cookies, data=data)
+    if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def do_login():
+def need_verify_code() -> str:
+    result = '0'
+    phone = hget_name(id_key=ID_KEY, name='phone')
+    cookies_list, cookies = cookie_dealer(ID_KEY)
+    url, headers, params = get_args_maker('need_verify_code')
+    params.update({'account': phone, 'timestamp': round(1000*time.time())})
+    resp = get_request(url=url, headers=headers, cookies=cookies, params=params)
+    if resp:
+        js_dict = json_loads(resp.content.decode('utf-8'))
+        result = js_dict.get('needVerifyCode')
+    return result
+
+
+def load_token() -> None:
+    phone = hget_name(id_key=ID_KEY, name='phone')
+    cookies_list, cookies = cookie_dealer(ID_KEY)
+    url, headers, data = post_args_maker('load_token')
+    data.update({'userName': phone})
+    resp = post_request(url=url, headers=headers, cookies=cookies, data=data)
+    if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+        token = json.loads(resp.content.decode('utf-8')).get('result')
+        hset_name(id_key=ID_KEY, field='ex1', value=token)
+    return 
+
+
+def send_code() -> None:
+    phone = hget_name(id_key=ID_KEY, name='phone')
+    token = hget_name(id_key=ID_KEY, name='ex1')
+    cookies_list, cookies = cookie_dealer(ID_KEY)
+    url, headers, data = post_args_maker('send_code')
+    headers.update({'Xa-before': token})
+    data.update({'userName': phone})
+    resp = post_request(url=url, headers=headers, cookies=cookies, data=data)
+    if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
+
+
+def send_flag() -> None:
+    cookies_list, cookies = cookie_dealer(ID_KEY)
+    url, headers, params = get_args_maker('send_flag')
+    params.update({'timestamp': int(1000 * time.time())})
+    resp = get_request(url=url, headers=headers, params=params, cookies=cookies)
+    if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
+
+
+def receive_mail_code() -> None:
+    check_number()
+    result = need_verify_code()
+    load_token()
+    if result == '1':
+        send_code()
+    send_flag()
+
+
+def do_login() -> bool:
     phone = hget_name(id_key=ID_KEY, name='phone')
     pwd = hget_name(id_key=ID_KEY, name='pwd')
     cookies_list, cookies = cookie_dealer(ID_KEY)
+    # todo: 这里改为消息队列等待数据
     captcha_code = input('请输入短信验证码:\t')
     url = URL_DICT.get('login')
     headers = HEADERS_DICT.get('login')
@@ -100,13 +152,21 @@ def do_login():
                          })
     resp = get_request(url=url, headers=headers, params=params, cookies=cookies)
     if resp:
-        new_cookie = session_cookie_update(cookies_list, resp.cookies.items())
-        save_new_cookie(ID_KEY, new_cookie)
-        hset_name(id_key=ID_KEY, field='html', value=resp.content.decode('utf-8'))
-    return
+        js_dict = json_loads(resp.content.decode('utf-8'))
+        code = js_dict.get('code')
+        if code == '0000':
+            save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+            hset_name(id_key=ID_KEY, field='html', value=resp.content.decode('utf-8'))
+            return True
+        else:
+            info = js_dict.get('desc')
+            hset_name(id_key=ID_KEY, field='info', value=json.dumps(info))
+            hset_name(id_key=ID_KEY, field='login', value=json.dumps(False))
+    
+    return False
 
 
-def do_artifact():
+def do_artifact() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     html = hget_name(id_key=ID_KEY, name='html')
     js_dict = json_loads(html)
@@ -123,25 +183,17 @@ def do_artifact():
             cookies = cookie_transform(new_cookie)
             resp_new = get_request(url=url_location, headers=headers_artifact, cookies=cookies)
             if resp_new:
-                new_cookie = session_cookie_update(cookies_list, resp_new.cookies.items())
-                save_new_cookie(ID_KEY, new_cookie)
+                save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp_new.cookies.items()))
+                hset_name(id_key=ID_KEY, field='login', value=json.dumps(True))
+    return 
 
 
-def general_request(param):
-    cookies_list, cookies = cookie_dealer(ID_KEY)
-    url = URL_DICT.get(param)
-    headers = HEADERS_DICT.get(param)
-    resp = get_request(url=url, headers=headers, cookies=cookies)
-    if resp:
-        new_cookie = session_cookie_update(cookies_list, resp.cookies.items())
-        save_new_cookie(ID_KEY, new_cookie)
-
-
-def cmcc_run(tkey):
+def cmcc_run(tkey) -> None:
     global ID_KEY
     ID_KEY = tkey
     ready_2_login()
     receive_mail_code()
-    do_login()
-    do_artifact()
+    is_login = do_login()
+    if is_login:
+        do_artifact()
     return

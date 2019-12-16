@@ -1,4 +1,4 @@
-# TPHandler
+# [TPHandler](https://github.com/beforeuwait/TPHandler) ![language](https://img.shields.io/badge/language-python3-green) ![license](https://img.shields.io/badge/License-MIT-blue)
 
 移动,电信,联通等运营商的模拟登录以及查询详单(仅支持四川，联通貌似支持全国)
 
