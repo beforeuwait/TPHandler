@@ -86,6 +86,7 @@ def need_verify_code() -> str:
     params.update({'account': phone, 'timestamp': round(1000*time.time())})
     resp = get_request(url=url, headers=headers, cookies=cookies, params=params)
     if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
         js_dict = json_loads(resp.content.decode('utf-8'))
         result = js_dict.get('needVerifyCode')
     return result
