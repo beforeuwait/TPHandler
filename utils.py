@@ -181,6 +181,12 @@ def calculate_md5(ctx):
 # cookie_deal
 def cookie_dealer(id_key):
     cookies_list = get_current_cookie(id_key)
+    cookies = cookie_transform(cookies_list)
+    return cookies_list, cookies
+
+
+def cookie_dealer_sorted(id_key):
+    cookies_list = get_current_cookie(id_key)
     cookies_list = sorted(cookies_list)
     cookies = cookie_transform(cookies_list)
     return cookies_list, cookies
