@@ -109,8 +109,8 @@ def query_data():
 def ct_detail_run(tkey):
     global ID_KEY
     ID_KEY = tkey
-    fare_link = hget_name(ID_KEY, 'ex2')
-    detail_link = hget_name(ID_KEY, 'ex3')
+    fare_link = hget_name(ID_KEY, 'ex3')
+    detail_link = hget_name(ID_KEY, 'ex4')
     login_fare_detail_sys(fare_link)
     check_my_session()
     login_fare_detail_sys(detail_link)
