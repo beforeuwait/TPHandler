@@ -21,7 +21,7 @@ from . import LOGIN_URL
 from . import LOGIN_HEADERS
 from . import LOGIN_PAYLOADS
 from . import LOGIN_PARAMS
-from . import cookie_dealer
+from . import cookie_dealer_sorted as cookie_dealer
 from . import session_cookie_update
 from . import save_new_cookie
 from . import hget_name
