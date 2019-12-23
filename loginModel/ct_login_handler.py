@@ -221,7 +221,7 @@ def e_r_login1_maker() -> None:
     return 
 
 
-def login_get_html() -> None:
+def login_get_html() -> bool:
     is_continue = True
     cookies_list, cookies = cookie_dealer(ID_KEY)
     phone = hget_name(ID_KEY, 'phone')
