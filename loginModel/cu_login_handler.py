@@ -12,6 +12,7 @@
 """
 
 
+import re
 import time
 from . import LOGIN_URL
 from . import LOGIN_HEADERS
@@ -35,24 +36,25 @@ PARAMS_DICT = LOGIN_PARAMS.get(XCODE)
 PAYLOADS_DICT = LOGIN_PAYLOADS.get(XCODE)
 
 
-def get_args_maker(params):
+def get_args_maker(params) -> tuple:
     return URL_DICT.get(params), HEADERS_DICT.get(params), PARAMS_DICT.get(params)
 
 
-def post_args_maker(params):
+def post_args_maker(params) -> tuple:
     return URL_DICT.get(params), HEADERS_DICT.get(params), PAYLOADS_DICT.get(params)
 
 
-def general_request(name):
+def general_request(name) -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, params = get_args_maker(name)
     headers.update(cookies)
     resp = get_request_cu(url=url, headers=headers)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def general_request_params(name):
+def general_request_params(name) -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, params = get_args_maker(name)
     headers.update(cookies)
@@ -61,9 +63,10 @@ def general_request_params(name):
     resp = get_request_cu(url=url, headers=headers, params=params)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def search_per_info():
+def search_per_info() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('search_per_info')
     headers.update(cookies)
@@ -71,9 +74,10 @@ def search_per_info():
     resp = post_request_cu(url=url, headers=headers, data=data)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def search_per_info_user():
+def search_per_info_user() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('search_per_info_user')
     headers.update(cookies)
@@ -81,9 +85,10 @@ def search_per_info_user():
     resp = post_request_cu(url=url, headers=headers, data=data)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def check_login():
+def check_login() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('checklogin')
     url = URL_DICT.get('checklogin').format(int(1000*time.time()))
@@ -91,9 +96,10 @@ def check_login():
     resp = post_request_cu(url=url, headers=headers)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def get_js():
+def get_js() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('get_js')
     url = URL_DICT.get('get_js').format(int(1000*time.time()), int(1000*time.time()))
@@ -101,9 +107,10 @@ def get_js():
     resp = post_request_cu(url=url, headers=headers)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def check_login_2():
+def check_login_2() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('checklogin2')
     url = URL_DICT.get('checklogin2').format(int(1000*time.time()))
@@ -111,9 +118,10 @@ def check_login_2():
     resp = post_request_cu(url=url, headers=headers, data=data)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def info():
+def info() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('info')
     url = URL_DICT.get('info').format(int(1000 * time.time()))
@@ -121,9 +129,10 @@ def info():
     resp = post_request_cu(url=url, headers=headers)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def shopping():
+def shopping() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, params = get_args_maker('shopping')
     headers.update(cookies)
@@ -132,18 +141,20 @@ def shopping():
     resp = get_request_cu(url=url, headers=headers, params=params)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def query_navigations():
+def query_navigations() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('query_navigations')
     headers.update(cookies)
     resp = post_request_cu(url=url, headers=headers, data=data)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def get_area_by_ip():
+def get_area_by_ip() -> None:
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, data = post_args_maker('get_area_by_ip')
     url = url.format(int(1000*time.time()))
@@ -151,9 +162,11 @@ def get_area_by_ip():
     resp = post_request_cu(url=url, headers=headers)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
-def check_need_verify():
+def check_need_verify() -> bool:
+    is_verify = True
     phone = hget_name(id_key=ID_KEY, name='phone')
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, params = get_args_maker('check_need_verify')
@@ -163,13 +176,21 @@ def check_need_verify():
                    '_': int(1000*time.time())})
     resp = get_request_cu(url=url, headers=headers, params=params)
     if resp:
-        # todo:这里添加一个验证过程
-        # 如果不验证的情况，直接登录
-        # 如果验证的情况，接受短信登录
+        is_verify = deal_check_need_verify_response(resp.content.decode('utf-8'))
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return is_verify
 
 
-def send_ck_msg():
+def deal_check_need_verify_response(html) -> bool:
+    ck_code = re.findall('"ckCode":"(\d{0,5})"', html)[0] if re.findall('"ckCode":"(\d{0,5})"', html) else -1
+    result = re.findall('"resultCode":"(.*?)"', html)[0] if re.findall('"resultCode":"(.*?)"', html) else None
+    if result == 'true' and ck_code != 2:
+        return False
+    return True
+
+
+def send_ck_msg() -> bool:
+    is_send = True
     phone = hget_name(id_key=ID_KEY, name='phone')
     cookies_list, cookies = cookie_dealer(ID_KEY)
     url, headers, params = get_args_maker('send_ck_msg')
@@ -181,7 +202,18 @@ def send_ck_msg():
     resp = get_request_cu(url=url, headers=headers, params=params)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
-    return
+        is_send = deal_send_ck_msg(resp.content.decode('utf-8'))
+        if not is_send:
+            hset_name(id_key=ID_KEY, field='info', value='短信下发失败')
+    return is_send
+
+
+def deal_send_ck_msg(html):
+    result = re.findall('resultCode:"(.*?)"', html)[0] if re.findall('resultCode:"(.*?)"', html) else None
+    if result == '0000':
+        return True
+    else:
+        return False
 
 
 def deal_code():
@@ -190,22 +222,54 @@ def deal_code():
     return
 
 
-def mall_login():
+def mall_login_with_code():
     cookies_list, cookies = cookie_dealer(ID_KEY)
     phone = hget_name(id_key=ID_KEY, name='phone')
     pwd = hget_name(id_key=ID_KEY, name='pwd')
     code = hget_name(id_key=ID_KEY, name='captcha1')
     url, headers, params = get_args_maker('mall_login')
     headers.update(cookies)
-    params.update({'callback': params.get('callback').format(int(1000*time.time())),
-                   'req_time': int(1000*time.time()),
-                   'userName': phone,
-                   'password': pwd,
-                   'verifyCKCode': code,
-                   '_': int(1000*time.time())})
+    params.update({
+        'callback': params.get('callback').format(int(1000*time.time())),
+        'req_time': int(1000*time.time()),
+        'userName': phone,
+        'password': pwd,
+        'verifyCKCode': code,
+        '_': int(1000*time.time())})
     resp = get_request_cu(url=url, headers=headers, params=params)
     if resp:
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+        deal_mall_login(resp.content.decode('utf-8'))
+
+
+def mall_login_without_code():
+    cookies_list, cookies = cookie_dealer(ID_KEY)
+    phone = hget_name(id_key=ID_KEY, name='phone')
+    pwd = hget_name(id_key=ID_KEY, name='pwd')
+    url, headers, params = get_args_maker('mall_login')
+    headers.update(cookies)
+    params.update({
+        'callback': params.get('callback').format(int(1000*time.time())),
+        'req_time': int(1000*time.time()),
+        'userName': phone,
+        'password': pwd,
+        '_': int(1000*time.time())})
+    resp = get_request_cu(url=url, headers=headers, params=params)
+    if resp:
+        save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+        deal_mall_login(resp.content.decode('utf-8'))
+
+
+def deal_mall_login(html) -> bool:
+    result_code = re.findall('resultCode:"(.*?)"', html)[0] if re.findall('resultCode:"(.*?)"', html) else None
+    msg = re.findall('msg:\'(.*?)\',', html)[0] if re.findall('msg:\'(.*?)\',', html) else None
+    if result_code == '0000':
+        hset_name(id_key=ID_KEY, field='login', value='true')
+        return True
+    else:
+        hset_name(id_key=ID_KEY, field='login', value='false')
+        hset_name(id_key=ID_KEY, field='info', value=msg)
+        return True
 
 
 def cu_run(tkey):
@@ -226,7 +290,11 @@ def cu_run(tkey):
     shopping()
     query_navigations()
     get_area_by_ip()
-    check_need_verify()
-    send_ck_msg()
-    deal_code()
-    mall_login()
+    is_verify = check_need_verify()
+    if is_verify:
+        is_send = send_ck_msg()
+        if is_send:
+            deal_code()
+            mall_login_with_code()
+    else:
+        mall_login_without_code()
