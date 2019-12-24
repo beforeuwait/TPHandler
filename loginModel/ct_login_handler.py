@@ -93,6 +93,7 @@ def request_login_url() -> None:
             resp_loc_2 = get_request(url=url_location_2, headers=headers, cookies=cookies)
             if resp_loc_2:
                 save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp_loc_2.cookies.items()))
+    return
 
 
 def add_cookie() -> None:
@@ -111,6 +112,7 @@ def add_cookie() -> None:
     if resp:
         cookies_list.append(("trkHmClickCoords", TRKHMCLICKCOORDS))
         save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp.cookies.items()))
+    return
 
 
 def check_phone_number() -> bool:
@@ -237,6 +239,7 @@ def login_get_html() -> bool:
         location_url = resp.headers.get('Location')
         if not location_url:
             hset_name(id_key=ID_KEY, field='info', value='短信验证码错误或者其他导致登录失败')
+            hset_name(id_key=ID_KEY, field='login', value='false')
             is_continue = False
             return is_continue
         new_cookie = session_cookie_update(cookies_list, resp.cookies.items())
@@ -251,6 +254,7 @@ def login_get_html() -> bool:
             if resp_location_2:
                 save_new_cookie(ID_KEY, session_cookie_update(new_cookie, resp_location_2.cookies.items()))
                 html = resp_location_2.content.decode('utf-8')
+                hset_name(id_key=ID_KEY, field='login', value='true')
                 hset_name(id_key=ID_KEY, field='html', value=html)
     return is_continue
 
@@ -297,6 +301,7 @@ def do_redirect_get_cloud_session() -> None:
                             detail_link = re.findall('gotoIfremBody\(\'(.*?)\',\'20000326', resp_home.content.decode('utf-8'))[0]
                             hset_name(ID_KEY, 'ex3', ''.join(['http://www.189.cn', fare_link]))
                             hset_name(ID_KEY, 'ex4', ''.join(['http://www.189.cn', detail_link]))
+    return
 
 
 def ct_run(tkey):
