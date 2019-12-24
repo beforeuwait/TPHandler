@@ -186,6 +186,9 @@ def do_artifact() -> None:
             if resp_new:
                 save_new_cookie(ID_KEY, session_cookie_update(cookies_list, resp_new.cookies.items()))
                 hset_name(id_key=ID_KEY, field='login', value=json.dumps(True))
+        else:
+            hset_name(id_key=ID_KEY, field='login', value=json.dumps(False))
+
     return 
 
 
