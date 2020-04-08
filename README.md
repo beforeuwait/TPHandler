@@ -1,5 +1,15 @@
 # [TPHandler](https://github.com/beforeuwait/TPHandler) ![language](https://img.shields.io/badge/language-python3-green) ![license](https://img.shields.io/badge/License-MIT-blue)
 
+## 2020-04-08
+
+此项目停止更新
+
+重新设计模式
+
+[新项目地址](https://github.com/beforeuwait/TelecomCrawler)
+
+## old
+
 移动,电信,联通等运营商的模拟登录以及查询详单(仅支持四川，联通貌似支持全国)
 
 开发中，上传看心情........
