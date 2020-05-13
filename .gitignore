@@ -3,3 +3,4 @@ __pycache__/
 .idea/
 .DS_Store
 train/
+/download_m3u8
